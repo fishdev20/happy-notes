@@ -1,9 +1,8 @@
-import { app, BrowserWindow } from 'electron'
-import { createRequire } from 'node:module'
-import { fileURLToPath } from 'node:url'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const require = createRequire(import.meta.url)
+// const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // The built directory structure
@@ -28,10 +27,20 @@ let win: BrowserWindow | null
 
 function createWindow() {
   win = new BrowserWindow({
+    // show: false,
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
+
     },
+    frame: false,
+    autoHideMenuBar: process.env.NODE_ENV === 'development' ? false : true,
+    titleBarStyle: 'hidden',
+    title: 'Happy notes',
+    hasShadow: true,
+    roundedCorners: true,
+    width: 1280,
+    height: 800,
   })
 
   // Test active push message to Renderer-process.
@@ -65,4 +74,20 @@ app.on('activate', () => {
   }
 })
 
-app.whenReady().then(createWindow)
+app.whenReady().then(createWindow).finally(() => {
+  ipcMain.on("minimize", () => {
+    win!.minimize();
+  })
+
+  ipcMain.on("maximize", () => {
+    if (win!.isMaximized()) {
+      win!.unmaximize();
+    } else {
+      win!.maximize();
+    }
+  })
+
+  ipcMain.on("close", () => {
+    win!.close();
+  })
+})
