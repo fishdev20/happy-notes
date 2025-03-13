@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
-    "build": "cross-env NODE_ENV=production && vite build && electron-builder --publish never",
-    "release": "cross-env NODE_ENV=production && vite build electron-builder --publish always",
+    "build": "vite build",
+    "electron-build": "electron-builder",
+    "release": "cross-env NODE_ENV=production && npm run build && npm run electron-build -- --publish always",
     "lint": "eslint . --ext ts,tsx --max-warnings 0",
     "preview": "vite preview"
   },
