@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             <AppMenu />
 
         {/* Main Layout */}
-        <div className="flex flex-1 h-[calc(100vh-3rem)]">
+        <div className="flex flex-1 h-[calc(100vh-4rem)]">
           {/* Sidebar */}
           <SidebarProvider>
             <AppSidebar />
@@ -36,7 +36,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               </header>
 
               {/* Scrollable Content Area */}
-              <ScrollArea className="h-[calc(100vh-3rem-3rem)] p-4">
+              <ScrollArea className="h-[calc(100vh-4rem-4rem)] p-4">
                 {children}
               </ScrollArea>
             </SidebarInset>

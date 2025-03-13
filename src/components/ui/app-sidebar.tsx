@@ -1,26 +1,25 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Archive, Calendar, NotepadText, Trash } from "lucide-react"
 
+import { NavUser } from "./nav-user"
 import {
-    Sidebar,
-    SidebarContent,
-    SidebarGroup,
-    SidebarGroupContent,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarRail
 } from "./sidebar"
 
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Notes",
     url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    icon: NotepadText,
   },
   {
     title: "Calendar",
@@ -28,20 +27,27 @@ const items = [
     icon: Calendar,
   },
   {
-    title: "Search",
+    title: "Archive",
     url: "#",
-    icon: Search,
+    icon: Archive,
   },
   {
-    title: "Settings",
+    title: "Trash",
     url: "#",
-    icon: Settings,
+    icon: Trash,
   },
 ]
 
 export function AppSidebar() {
   return (
-    <Sidebar side="right" collapsible="icon" className="sticky">
+    <Sidebar side="left" collapsible="icon" className="sticky">
+      <SidebarHeader>
+      <NavUser user={{
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  }} />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           {/* <SidebarGroupLabel>Application</SidebarGroupLabel> */}
@@ -61,6 +67,14 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={{
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  }} />
+      </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   )
 }
