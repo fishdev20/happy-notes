@@ -1,6 +1,6 @@
-import { Archive, Calendar, NotepadText, Trash } from "lucide-react"
+import { Archive, Calendar, NotepadText, Trash } from "lucide-react";
 
-import { NavUser } from "./nav-user"
+import { NavUser } from "./nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -11,8 +11,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail
-} from "./sidebar"
+  SidebarRail,
+} from "./sidebar";
 
 // Menu items.
 const items = [
@@ -23,30 +23,32 @@ const items = [
   },
   {
     title: "Calendar",
-    url: "/notes",
+    url: "/calendar",
     icon: Calendar,
   },
   {
     title: "Archive",
-    url: "/notes",
+    url: "/archive",
     icon: Archive,
   },
   {
     title: "Trash",
-    url: "/notes",
+    url: "/trash",
     icon: Trash,
   },
-]
+];
 
 export function AppSidebar() {
   return (
     <Sidebar side="left" collapsible="icon" className="sticky">
       <SidebarHeader>
-      <NavUser user={{
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  }} />
+        <NavUser
+          user={{
+            name: "shadcn",
+            email: "m@example.com",
+            avatar: "/avatars/shadcn.jpg",
+          }}
+        />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
@@ -55,7 +57,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={item.title} >
+                  <SidebarMenuButton asChild tooltip={item.title}>
                     <a href={`#${item.url}`}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -68,13 +70,15 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={{
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  }} />
+        <NavUser
+          user={{
+            name: "shadcn",
+            email: "m@example.com",
+            avatar: "/avatars/shadcn.jpg",
+          }}
+        />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

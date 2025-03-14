@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dist-electron/
+release/
+.vscode/
+public/
+electron-builder-cache/
+.github/
