@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 import { AppSidebar } from "../ui/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
 import { ScrollArea } from "../ui/scroll-area";
@@ -14,6 +14,9 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 import AppMenu from "./AppMenu";
 
 export default function Layout({ children }: { children: ReactNode }) {
+  const location = useLocation();
+  const pathnames = location.pathname.split("/").filter((x) => x);
+
   return (
     <div className="h-screen w-screen flex flex-col">
       <AppMenu />
@@ -30,13 +33,30 @@ export default function Layout({ children }: { children: ReactNode }) {
               <Separator orientation="vertical" className="mr-2 h-4" />
               <Breadcrumb>
                 <BreadcrumbList>
-                  <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink href="#notes">Building Your Application</BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator className="hidden md:block" />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                  </BreadcrumbItem>
+                  {pathnames.map((name, index) => {
+                    const routeTo = `#${pathnames.slice(0, index + 1).join("/")}`;
+                    const isLast = index === pathnames.length - 1;
+
+                    return (
+                      <BreadcrumbItem key={routeTo}>
+                        {!isLast ? (
+                          <>
+                            <BreadcrumbLink href={routeTo} className="capitalize">
+                              {decodeURIComponent(name)}
+                            </BreadcrumbLink>
+                            <BreadcrumbSeparator />
+                          </>
+                        ) : (
+                          <BreadcrumbLink
+                            // href={routeTo}
+                            className="text-muted-foreground capitalize"
+                          >
+                            {decodeURIComponent(name)}
+                          </BreadcrumbLink>
+                        )}
+                      </BreadcrumbItem>
+                    );
+                  })}
                 </BreadcrumbList>
               </Breadcrumb>
             </header>

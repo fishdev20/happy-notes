@@ -29,15 +29,14 @@ let win: BrowserWindow | null;
 
 function createWindow() {
   win = new BrowserWindow({
-    // show: false,
     resizable: true,
     icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
     },
-    // frame: false,
+    frame: process.env.NODE_ENV === "development" ? true : false,
     autoHideMenuBar: process.env.NODE_ENV === "development" ? false : true,
-    // titleBarStyle: 'hidden',
+    titleBarStyle: process.env.NODE_ENV === "development" ? "default" : "hidden",
     title: "Happy notes",
     hasShadow: true,
     roundedCorners: true,

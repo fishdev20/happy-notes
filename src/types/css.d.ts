@@ -1,5 +1,5 @@
-declare module "react" {
-  interface CSSProperties {
-    WebkitAppRegion?: "drag" | "no-drag";
-  }
-}
+// declare module "react" {
+//   interface CSSProperties {
+//     WebkitAppRegion?: "drag" | "no-drag";
+//   }
+// }
