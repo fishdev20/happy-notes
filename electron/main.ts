@@ -33,9 +33,9 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.mjs'),
 
     },
-    frame: false,
-    autoHideMenuBar: process.env.NODE_ENV === 'development' ? false : true,
-    titleBarStyle: 'hidden',
+    frame: true,
+    // autoHideMenuBar: process.env.NODE_ENV === 'development' ? false : true,
+    // titleBarStyle: 'hidden',
     title: 'Happy notes',
     hasShadow: true,
     roundedCorners: true,

@@ -1,3 +1,4 @@
+
 import { ReactNode } from "react";
 import { AppSidebar } from "../ui/app-sidebar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb";
@@ -25,7 +26,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <Breadcrumb>
                   <BreadcrumbList>
                     <BreadcrumbItem className="hidden md:block">
-                      <BreadcrumbLink href="#">Building Your Application</BreadcrumbLink>
+                      <BreadcrumbLink href="#notes">Building Your Application</BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator className="hidden md:block" />
                     <BreadcrumbItem>

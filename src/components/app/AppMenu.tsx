@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 const AppMenu = () => {
     return (
         <header
-          className="flex h-[4rem] shrink-0 items-center gap-2 border-b px-4 justify-between" style={{ WebkitAppRegion: "drag" }}
+          className="flex h-[4rem] shrink-0 items-center gap-2 border-b px-4 justify-between bg-gray-50" style={{ WebkitAppRegion: "drag" }}
         >
             <div className="flex gap-2" style={{ WebkitAppRegion: "no-drag" }}>
                 <img

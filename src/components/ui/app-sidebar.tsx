@@ -18,22 +18,22 @@ import {
 const items = [
   {
     title: "Notes",
-    url: "#",
+    url: "/notes",
     icon: NotepadText,
   },
   {
     title: "Calendar",
-    url: "#",
+    url: "/notes",
     icon: Calendar,
   },
   {
     title: "Archive",
-    url: "#",
+    url: "/notes",
     icon: Archive,
   },
   {
     title: "Trash",
-    url: "#",
+    url: "/notes",
     icon: Trash,
   },
 ]
@@ -55,8 +55,8 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                  <SidebarMenuButton asChild tooltip={item.title} >
+                    <a href={`#${item.url}`}>
                       <item.icon />
                       <span>{item.title}</span>
                     </a>

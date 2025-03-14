@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
-    "build": "vite build",
-    "electron-build": "electron-builder",
-    "release": "cross-env NODE_ENV=production && npm run build && npm run electron-build -- --publish always",
+    "build": "tsc && vite build && electron-builder",
     "lint": "eslint . --ext ts,tsx --max-warnings 0",
     "preview": "vite preview"
   },
@@ -25,12 +23,14 @@
     "lucide-react": "^0.479.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^7.3.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",
