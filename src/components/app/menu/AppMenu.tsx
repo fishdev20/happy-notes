@@ -1,5 +1,5 @@
 import { Minus, Square, X } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 const AppMenu = () => {
   return (
@@ -20,6 +20,7 @@ const AppMenu = () => {
           Happy notes
         </h1>
       </div>
+      {/* <SearchBar /> */}
       <div style={{ WebkitAppRegion: "no-drag" }}>
         <Button variant={"ghost"} onClick={() => window.ipcRenderer.send("minimize")}>
           <Minus />

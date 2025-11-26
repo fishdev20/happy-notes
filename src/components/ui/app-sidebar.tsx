@@ -1,17 +1,16 @@
-import { Archive, Calendar, NotepadText, Trash } from "lucide-react";
+import { Archive, Calendar, Files, Trash } from "lucide-react";
 
+import { useLocation } from "react-router-dom";
 import { NavUser } from "./nav-user";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
 } from "./sidebar";
 
 // Menu items.
@@ -19,7 +18,7 @@ const items = [
   {
     title: "Notes",
     url: "/notes",
-    icon: NotepadText,
+    icon: Files,
   },
   {
     title: "Calendar",
@@ -39,8 +38,9 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const location = useLocation();
   return (
-    <Sidebar side="left" collapsible="icon" className="sticky">
+    <Sidebar variant="inset">
       <SidebarHeader>
         <NavUser
           user={{
@@ -52,33 +52,26 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          {/* <SidebarGroupLabel>Application</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
-                    <a href={`#${item.url}`}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {items.map((item) => {
+                const isActive = location.pathname.startsWith(item.url);
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild tooltip={item.title} isActive={isActive}>
+                      <a href={`#${item.url}`} className="w-full">
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser
-          user={{
-            name: "shadcn",
-            email: "m@example.com",
-            avatar: "/avatars/shadcn.jpg",
-          }}
-        />
-      </SidebarFooter>
-      <SidebarRail />
+      {/* <SidebarRail /> */}
     </Sidebar>
   );
 }

@@ -1,27 +1,18 @@
-import { Link } from "react-router-dom";
+import mockNotes from "@/mockData";
+import AddNoteCard from "./AddNoteCard";
+import NotePreview from "./NotePreview";
+import CategoryFilter from "./filter/Filter";
 
 const Notes = () => {
-  const testNotes = [
-    {
-      title: "test note 1",
-      id: 1,
-    },
-    {
-      title: "test note 2",
-      id: 2,
-    },
-    {
-      title: "test note 3",
-      id: 3,
-    },
-  ];
   return (
     <div>
-      {testNotes.map((note) => (
-        <Link to={`/notes/${note.id}`} key={note.id}>
-          {note.title}
-        </Link>
-      ))}
+      <CategoryFilter />
+      <div className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 lg:grid-cols-3">
+        <AddNoteCard />
+        {mockNotes.map((note) => (
+          <NotePreview note={note} key={note.id} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, shell } from "electron";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -44,11 +44,17 @@ function createWindow() {
     modal: true,
     width: 1280,
     height: 800,
+    minWidth: 700,
   });
 
   // Test active push message to Renderer-process.
   win.webContents.on("did-finish-load", () => {
     win?.webContents.send("main-process-message", new Date().toLocaleString());
+  });
+
+  ipcMain.handle("open-external-link", (_event, url) => {
+    // Open the link in the default browser
+    shell.openExternal(url);
   });
 
   if (VITE_DEV_SERVER_URL) {
